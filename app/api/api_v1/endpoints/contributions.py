@@ -26,11 +26,11 @@ async def get_stats_over_time(data: schemas.ContributionsStatsOverTimeRequest):
         return dt + (datetime.min - dt) % data.interval
 
     contributions_over_time = []
-    for interval_ceil, contributions in itertools.groupby(contributions, key=group_contribution):
+    for interval_end, contributions in itertools.groupby(contributions, key=group_contribution):
         c = list(contributions)
         contributions_over_time.append({
-            "interval_start": interval_ceil - data.interval,
-            "interval_end": interval_ceil,
+            "interval_start": interval_end - data.interval,
+            "interval_end": interval_end,
             "contributions_count": len(c),
             "contributions": c
         })
