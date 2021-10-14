@@ -1,10 +1,25 @@
-# My task is to build an integration and processing system for Wikipedia / Wikimedia.
 
-My task is to add integration with the Wiki Recent Change API  ([wikimedia endpoint link](https://en.wikipedia.org/w/api.php?action=help&modules=feedrecentchanges)) (alternatively - [WikiMedia Event Stream API](https://wikitech.wikimedia.org/wiki/Event_Platform/EventStreams)).
 
-As a part of that task, you should design an API that let:
+<a href="https://docs.python.org/3/library/index.html">
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+</a>
+<a href="https://fastapi.tiangolo.com/">
+<img src="https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white" /> 
+</a>
+<a href="https://www.docker.com/">
+<img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white"/>
+</a>
+<a href="https://docs.pytest.org/en/6.2.x/contents.html/">
+<img src="https://img.shields.io/badge/coverage-72%25-green.svg"/>
+</a>
+
+# Our task is to build an integration and processing system for Wikipedia / Wikimedia.
+
+Our task is to add integration with the Wiki Recent Change API  ([wikimedia endpoint link](https://en.wikipedia.org/w/api.php?action=help&modules=feedrecentchanges)) (alternatively - [WikiMedia Event Stream API](https://wikitech.wikimedia.org/wiki/Event_Platform/EventStreams)).
+
+As a part of that task, we should design an API that let:
 1. Get all Recent Changes as a real-time stream
-2. Track in real-time the activity of a particular user or a set of users (this assumes you shall create a user if you have not observed any events from them) 
+2. Track in real-time the activity of a particular user or a set of users (this assumes we shall create a user if we have not observed any events from them) 
 3. Retrieve a statistic of a particular user which include:
 - Information about user contribution as a series of points over time. (Wikipedia User Contribution can be gathered as X Y data points (where X is time and Y is a total number of contributions at that point in time. As an example of such may be taken the following graphic of a user contribution for a Github project
 - Note, the API should allow one to specify the time granularity in which the series should be returned 
@@ -23,34 +38,19 @@ As a part of that task, you should design an API that let:
 4. Implement core logic and makes sure that it meets quality criteria (test coverage, manual verification)
 5. Explain the reasons, why a specific implementation approach was selected
 
-
-## Моя задача - построить систему интеграции и обработки для Википедии / Викимедиа.
-
-Моя задача - добавить интеграцию с Wiki Recent Change API (ссылка на конечную точку wikimedia) (альтернативно - WikiMedia Event Stream API).
-
-В рамках этой задачи вам следует разработать API, который позволит:
-- [x] Получите все недавние изменения в виде потока в реальном времени.
-- [x] Отслеживайте в режиме реального времени активность конкретного пользователя или группы пользователей (это предполагает, что вы должны создать пользователя, если вы не наблюдали каких-либо событий от них)
-- [x]  Получить статистику конкретного пользователя, которая включает:
-- [x]  Информация о вкладе пользователей в виде набора точек с течением времени. (Вклад пользователей Википедии можно собрать в виде точек данных X Y (где X - время, а Y - общее количество вкладов в этот момент времени. В качестве примера может быть взята следующая диаграмма вклада пользователя в проект Github).
-- [x]  Обратите внимание, что API должен позволять указывать гранулярность по времени, в которой должна быть возвращена серия.
-- [x]  Темы, в которые пользователь внес наибольший вклад
-- [x]  Тип вклада (редактирование опечаток | добавление контента). Тип вклада должен быть представлен в виде абсолютных чисел, чтобы можно было догадаться, помогает ли пользователь добавлять новые факты или в основном редактировать.
-- [ ]  Получить наиболее активных пользователей за (ГОД | МЕСЯЦ | ДЕНЬ)
-- [ ]  Найдите 10 самых популярных тем, в которых было исправлено наибольшее количество опечаток.
-- [ ]  Необязательно: найдите слово, в котором пользователи чаще всего ошибаются.
-
-
-# Критерии приемки
-
-1. В проекте реализован подход функционального реактивного программирования.
-2. Разработайте архитектуру проекта и представьте ее. Объясните причины, по которым был выбран конкретный подход.
-3. Объясните поток данных на диаграмме последовательности.
-4. Реализуйте основную логику и убедитесь, что она соответствует критериям качества (охват тестированием, ручная проверка).
-5. Объясните причины, по которым был выбран конкретный подход к реализации.
-
-
 # Run tests:
 ```
 docker-compose exec backend ./test.sh
 ```
+
+# Test coverage
+```
+python -m pytest --cov
+```
+
+# Interesting links
+- [watchlist](https://www.mediawiki.org/w/api.php?action=help&modules=query%2Bwatchlist)
+- [usercontribs](https://www.mediawiki.org/w/api.php?action=help&modules=query%2Busercontribs)
+- [users](https://www.mediawiki.org/w/api.php?action=help&modules=query%2Busers)
+- [mostviewed](https://www.mediawiki.org/w/api.php?action=help&modules=query%2Bmostviewed)
+
