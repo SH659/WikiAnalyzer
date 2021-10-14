@@ -1,5 +1,6 @@
 import itertools
 import logging
+from collections import Counter
 from datetime import datetime
 
 from fastapi import APIRouter
@@ -35,3 +36,11 @@ async def get_stats_over_time(data: schemas.ContributionsStatsOverTimeRequest):
             "contributions": c
         })
     return {"contributions_over_time": contributions_over_time}
+
+
+@router.get('/top_titles/', response_model=schemas.MostCommonContributions)
+async def get_top_titles(username: str):
+    contributions = await wikimedia.contributions.get_by_user(username)
+    counter = Counter(c['title'] for c in contributions)
+    res = [{"title": title, "occurrences": occurrences} for title, occurrences in counter.most_common()]
+    return {"most_common_contribution_titles": res}

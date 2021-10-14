@@ -49,3 +49,12 @@ class ContributionsStatsOverTimeResponseItem(BaseModel):
 
 class ContributionsStatsOverTimeResponse(BaseModel):
     contributions_over_time: list[dict]
+
+
+class MostCommonContributionItem(BaseModel):
+    title: str
+    occurrences: int
+
+
+class MostCommonContributions(BaseModel):
+    most_common_contribution_titles: list[MostCommonContributionItem]

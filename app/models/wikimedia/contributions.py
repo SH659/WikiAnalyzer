@@ -4,7 +4,7 @@ from datetime import datetime
 import aiohttp
 
 
-async def get_by_user(user: str, ucstart: datetime, ucend: datetime) -> dict:
+async def get_by_user(user: str, ucstart: datetime = None, ucend: datetime = None) -> dict:
     url = "https://en.wikipedia.org/w/api.php"
     params = {
         "action": "query",

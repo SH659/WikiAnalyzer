@@ -1,3 +1,3 @@
 from .contributions import (ContributionsRequest, ContributionsResponse, ContributionsStatsOverTimeRequest,
-                            ContributionsStatsOverTimeResponse)
+                            ContributionsStatsOverTimeResponse, MostCommonContributions)
 from .recent_change import RecentChange, RecentChangeFilter
