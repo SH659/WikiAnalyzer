@@ -18,7 +18,7 @@ def at_function_exit(func):
 
 
 def async_stream_tee(aiter_: Callable[[], AsyncIterable[T]]) -> Callable[[], AsyncIterable[T]]:
-    value_changed_event: asyncio.Event = asyncio.Event()
+    value_changed_event: Optional[asyncio.Event] = None
     value: T = None
     subscribers_count: int = 0
     listen_task: Optional[asyncio.Task] = None
@@ -37,7 +37,9 @@ def async_stream_tee(aiter_: Callable[[], AsyncIterable[T]]) -> Callable[[], Asy
             listen_task = None
 
     async def observe() -> AsyncIterable[T]:
-        nonlocal subscribers_count, listen_task
+        nonlocal subscribers_count, listen_task, value_changed_event
+        if value_changed_event is None:
+            value_changed_event = asyncio.Event()
         subscribers_count += 1
         at_func_exit = at_function_exit(_decrease_listeners_count)
 
